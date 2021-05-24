@@ -33,7 +33,7 @@ export default function App() {
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
       <button onClick={() => dispatch({type: 'increment'})}>+</button>
       </>
-      <h1>My REACT APP - Vishaleyes</h1>
+      <h1>My REACT APP - Vishaleyes - TEST APP</h1>
       <div>
         <p>You clicked {count} times</p>
         <p>You clicked {customCount} times</p>

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 export default function App() {
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => console.log(data);
+  const [users, setUsers] = useState([]);
   const [count, setCount] = useState(0);
   const [customCount, setCustomCount] = useState(0);
   console.log(errors);
@@ -25,6 +26,23 @@ export default function App() {
     document.title = `You clicked ${count} times`;
     setCustomCount(count);
   });
+
+  useEffect(() => {
+    fetch("https://reqres.in/api/users")
+    .then(res => res.json())
+    .then(
+      (result) => {console.log("result", result);
+        setUsers(result);
+      },
+      // Note: it's important to handle errors here
+      // instead of a catch() block so that we don't swallow
+      // exceptions from actual bugs in components.
+      (error) => {
+        console.log("error", error);
+      }
+    )
+  }, []);
+
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <div>
@@ -35,15 +53,39 @@ export default function App() {
       </>
       <h1>My REACT APP - Vishaleyes - TEST APP</h1>
       <div>
+        <table>
+          <thead>
+            <tr>
+            <th>#</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Email</th>
+            <th>Avatar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users?.data && users?.data?.map((user, index) => (
+              <tr key={index}>
+                  <td>{user?.id}</td>
+                  <td>{user?.first_name}</td>
+                  <td>{user?.last_name}</td>
+                  <td>{user?.email}</td>
+                  <td><img src={user?.avatar} width="52" height="52"></img></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div>
         <p>You clicked {count} times</p>
         <p>You clicked {customCount} times</p>
         <button onClick={() => setCount(count + 1)}>Click me</button>
       </div>
-      <div class="container">
+      <div className="container">
       <form onSubmit={handleSubmit(onSubmit)}>
 
-      <div class="form-group">
-        <label for="email">First name:</label>
+      <div className="form-group">
+        <label htmlFor="Firstname">First name:</label>
         <input
           type="text"
           className="form-control"
@@ -57,8 +99,8 @@ export default function App() {
         
       </div>
 
-      <div class="form-group">
-        <label for="email">Last name:</label>
+      <div className="form-group">
+        <label htmlFor="LastName">Last name:</label>
         <input
           type="text"
           className="form-control"
@@ -72,8 +114,8 @@ export default function App() {
       </div>
 
 
-      <div class="form-group">
-        <label for="email">Email:</label>
+      <div className="form-group">
+        <label htmlFor="email">Email:</label>
         <input
           type="text"
           className="form-control"
@@ -85,8 +127,8 @@ export default function App() {
         {errors.Email?.type === "pattern" && "Your email is invalid"}</span>
       </div>
 
-      <div class="form-group">
-        <label for="email">Mobile number:</label>
+      <div className="form-group">
+        <label htmlFor="email">Mobile number:</label>
         <input
           type="tel"
           className="form-control"
@@ -97,8 +139,8 @@ export default function App() {
       </div>
        
        
-      <div class="form-group">
-        <label for="email">Mobile number:</label>
+      <div className="form-group">
+        <label htmlFor="Title">Mobile number:</label>
         <select className="form-control"  name="Title" ref={register({ required: true })}>
           <option value="Mr">Mr</option>
           <option value="Mrs">Mrs</option>
@@ -109,8 +151,8 @@ export default function App() {
       </div>  
        
         
-      <div class="form-group">
-        <label for="email">Mobile number:</label>
+      <div className="form-group">
+        <label htmlFor="email">Mobile number:</label>
         <input
           name="Developer"
           type="radio"
@@ -125,8 +167,8 @@ export default function App() {
         />
         <span className="text-danger">{errors.Developer?.type === "required" && "Your input is required"}</span>
       </div>  
-      <div class="form-group">
-        <label for="email">Mobile number:</label>
+      <div className="form-group">
+        <label htmlFor="email">Mobile number:</label>
         <input type="submit" className="form-control"/>
         <span className="text-danger">{errors.Title?.type === "required" && "Your input is required"}</span>
       </div>  

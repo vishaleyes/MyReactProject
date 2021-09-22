@@ -18,7 +18,7 @@ function Nav() {
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item active"><Link to="/" className="nav-link">Home</Link></li>
                         <li className="nav-item"><Link to="/test" className="nav-link">List</Link></li>
-                        <li className="nav-item"><Link to="#" className="nav-link">Chart</Link></li>
+                        <li className="nav-item"><Link to="/chart" className="nav-link">Chart</Link></li>
                         <li className="nav-item"><Link to="#" className="nav-link">Page 3</Link></li>
 
                         </ul>

@@ -125,7 +125,7 @@ export default function App(props) {
         <button onClick={() => dispatch(MinusSuccess(1))}>-</button>
         <button onClick={() => dispatch(AddSuccess(1))}>+</button>
       </>
-      <h1>My REACT APP - Vishaleyes - TEST APP</h1>
+      <h1>My REACT APP - Vishaleyes - TEST APP 1</h1>
       <img src='./assets/logo192.png'/>
       <div>
         <table>

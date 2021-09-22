@@ -53,14 +53,18 @@ export default function Graph(props) {
 
   // a little function to help us with reordering the result
   const reorder = (list, startIndex, endIndex) => {
-    const result = Array.from(list);
+    console.log("list", list);
+    console.log("startIndex", startIndex);
+    console.log("endIndex", endIndex);
+    const result = Array.from(items);
     const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-
+    console.log("removed====>", removed);
+    result.splice(endIndex, 1, removed);
+    console.log("result====>", result);
     return result;
   };
 
-  const onDragEnd = (result) => {
+  const onDragEnd = (result) => {console.log("result", result);
     // dropped outside the list
     if (!result.destination) {
       return;
@@ -69,7 +73,7 @@ export default function Graph(props) {
     const items = reorder(items, result.source.index, result.destination.index);
     setItems(items);
   };
-
+  console.log("items", items);
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="droppable">

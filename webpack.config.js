@@ -13,7 +13,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|json)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -23,7 +23,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+        test: /\.(png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/,
         loader: "file-loader",
       },
       {
@@ -51,6 +51,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "public", "index.html"),
+      favicon: './public/favicon.ico'
     }),
     new CopyPlugin({
       patterns: [{ from: "public/assets", to: "assets" }],

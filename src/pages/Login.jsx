@@ -19,7 +19,6 @@ export default function Login(props) {
   const dispatch = useDispatch();
 
   
-  console.log(errors);
   const onSubmit = (data) => {
     dispatch(formDataSuccess(data));
     console.log(data);
@@ -37,12 +36,12 @@ export default function Login(props) {
     }
   }
 
-  useEffect(() => {
+  useEffect(() => { console.log("first use effect");
     document.title = `You clicked ${count} times`;
     setCustomCount(count);
   });
 
-  useEffect(() => {
+  useEffect(() => { console.log("second use effect");
     // Code with Axios Library
     const Axios = axios.create({
       baseURL: "http://66.117.13.149/api/",
